@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2734477171413c24cb3197bd07914c92, type: 3}
+  m_Name: UIScreens
+  m_EditorClassIdentifier: 
+  screens:
+  - name: Title
+    asset:
+      m_AssetGUID: 685006df41d0dad489b79132e9ea0f20
+      m_SubObjectName: 
+  - name: LoadingScreen
+    asset:
+      m_AssetGUID: 5053120664cf62348952fd8912255c48
+      m_SubObjectName: 

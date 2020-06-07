@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 46a9b97d6b8505e419d6f53f13ca06ee
+  m_SerializeEntries:
+  - m_GUID: 5053120664cf62348952fd8912255c48
+    m_Address: Assets/_App/Prefabs/Screens/LoadingScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 685006df41d0dad489b79132e9ea0f20
+    m_Address: Assets/_App/Prefabs/Screens/Title.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - screens
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9b282be6fae007c4fa60470d78ea1c49, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3aab973597b0d2849b056144897c9097, type: 2}
+    - {fileID: 11400000, guid: d37ff497a06e94a4ab245a55fed5e2fb, type: 2}
