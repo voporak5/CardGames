@@ -7,5 +7,6 @@
         //Screen Prefab Names
         public const string SCREENS_TITLE = "Title";
         public const string SCREENS_LOADING_SCREEN = "LoadingScreen";
+        public const string SCREENS_GAME = "Game";
     }
 }

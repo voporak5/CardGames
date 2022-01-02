@@ -7,20 +7,19 @@ using UnityEngine.UI;
 
 namespace CardGames.Screens
 {
-    public class LoadingScreen : ScreenBase
+    public class LoadingScreen : ScreenBase<LoadingScreen>
     {
         public delegate float GetLoadingProgressDelegate();
-
-        private static LoadingScreen instance;
 
         [SerializeField] Image loadingFill;
 
         public static void Show(GetLoadingProgressDelegate d)
         {
-            UIScreenManager.GetScreen(Constants.SCREENS_LOADING_SCREEN, g =>
+            Show(Constants.SCREENS_LOADING_SCREEN, () =>
             {
-                instance.Setup(d);
+                instance.StartCoroutine(instance.Load(d));
             });
+
         }
 
         public static void Hide()
@@ -28,10 +27,9 @@ namespace CardGames.Screens
             if (instance != null) instance.Close();
         }
 
-        private void Setup(GetLoadingProgressDelegate d)
+        protected override void Setup()
         {
-            id = Constants.SCREENS_LOADING_SCREEN;
-            StartCoroutine(Load(d));
+
         }
 
         IEnumerator Load(GetLoadingProgressDelegate d)

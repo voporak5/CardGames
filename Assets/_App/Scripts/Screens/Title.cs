@@ -8,42 +8,51 @@ using System;
 
 namespace CardGames.Screens
 {
-
-    public class Title : ScreenBase
+    public class Title : ScreenBase<Title>
     {
-        private static Title instance;
-
-        [SerializeField] Button garbageButton;
+        [SerializeField] Transform content;
+        [SerializeField] GameObject template;
 
         public static void Show()
         {
-            UIScreenManager.GetScreen(Constants.SCREENS_TITLE, g =>
+            Show(Constants.SCREENS_TITLE);
+        }
+
+        protected override void Setup()
+        {
+            Populate();
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            AppManager.OnGameLoad += Close;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            AppManager.OnGameLoad -= Close;
+        }
+
+        private void Populate()
+        {
+            var games = AppManager.Games;
+            for (int i = 0; i < games.Length; i++)
             {
-                instance.Setup();
-            });
-        }
-
-        private void Setup()
-        {
-            id = Constants.SCREENS_TITLE;
-        }
-
-        private void Awake()
-        {
-            instance = GetComponent<Title>();           
-        }
-
-        void Start()
-        {
-            garbageButton.onClick.AddListener(() =>
-            {
-                AppManager.LoadGame(Data.GameTypes.Garbage);
-            });
+                int indx = i;
+                GameObject b = Instantiate(template, content);
+                b.GetComponent<UIButton>().Setup(games[indx].Name, () =>
+                {
+                    AppManager.LoadGame(games[indx].GameType);
+                });
+                b.SetActive(true);
+            }
         }
 
         protected override void Close()
         {
-            base.Close();
+            base.Close();            
         }
     }
 }

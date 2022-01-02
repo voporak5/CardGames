@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CardGames.Base;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace CardGames

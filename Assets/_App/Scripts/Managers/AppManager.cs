@@ -1,20 +1,23 @@
 ﻿using CardGames.Data;
 using CardGames.Screens;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace CardGames
 {
-    public class AppManager : MonoBehaviour
+    public class AppManager : PersistentSingleton<AppManager>
     {
-        private static AppManager instance;
+        public static GameDefinition[] Games { get { return instance.games.definitions; } }
       
-        [SerializeField] private GameDefinition[] games;
+        [SerializeField] private Games games;
 
-        private void Awake()
+        public static Action OnGameLoad;
+
+        protected override void Awake()
         {
-            instance = GetComponent<AppManager>();
+            base.Awake();
         }
 
         // Start is called before the first frame update
@@ -25,18 +28,18 @@ namespace CardGames
 
         public static void LoadGame(GameTypes g)
         {
-            instance.DoLoadGame(g);
+            instance.StartCoroutine(instance.DoLoadGame(g));
         }
 
         private GameDefinition GetGame(GameTypes g)
         {
             GameDefinition def = null;
 
-            for(int i = 0; i < games.Length;i++)
+            for(int i = 0; i < games.definitions.Length;i++)
             {
-                if(games[i].GameType == g)
+                if(games.definitions[i].GameType == g)
                 {
-                    def = games[i];
+                    def = games.definitions[i];
                     break;
                 }
             }
@@ -70,7 +73,7 @@ namespace CardGames
                 //m_Text.text = "Loading progress: " + (asyncOperation.progress * 100) + "%";
 
                 // Check if the load has finished
-                if (asyncOperation.progress >= 0.9f)
+                if (asyncOperation.progress >= .9f)
                 {
                     asyncOperation.allowSceneActivation = true;
                 }
@@ -83,6 +86,7 @@ namespace CardGames
             yield return new WaitForSeconds(1f);
 
             LoadingScreen.Hide();
+            OnGameLoad?.Invoke();
         }
     }
 }
